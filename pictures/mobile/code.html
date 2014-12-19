@@ -1,0 +1,60 @@
+
+<html>
+<script>
+ <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/C.min.css" />
+	<link rel="stylesheet" href="themes/C.css" />
+	<link rel="stylesheet" type='text/css' href="themes/style.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	</script>
+	
+<script>
+function syncAjax(u){
+			var obj = $.ajax(
+					{url:u,
+					async: false
+					}
+				);
+			return $.parseJSON(obj.responseText);
+
+	}
+
+//Function to mark person present in database
+$(document).ready(function(){	
+
+window.alert("You have been Marked Present");
+ $("#done").click(function(){
+
+var code = $("#code").val();
+
+ var u  = "js_php.php?cmd=3&code="+code;
+ var r = syncAjax(u);
+
+ //location.reload();
+ });
+});
+
+</script>
+
+ 
+
+<body>
+
+<label	href = "#" for="code"> Please enter your registration code to show that you have registered</label>	
+<input	 type="text"	name="code"	id="code"><br>
+
+<br><meta http-equiv="refresh" content="50" > <img src ="code.png"></img>
+
+<div>
+
+<label	for=" ">
+<a  class="ui-btn"  id="done" align = "center">DONE</a>
+</div>
+</body>
+</html>

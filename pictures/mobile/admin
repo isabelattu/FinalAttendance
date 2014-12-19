@@ -1,0 +1,105 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/C.min.css" />
+	<link rel="stylesheet" href="themes/C.css" />
+	<link rel="stylesheet" type='text/css' href="themes/style.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+function syncAjax(u){
+			var obj = $.ajax(
+					{url:u,
+					async: false
+					}
+				);
+			return $.parseJSON(obj.responseText);
+
+	}
+	
+//Save Button	
+$(document).ready(function(){
+$("#save").click(function(){
+    //window.alert(u);
+    window.alert("Thank You For Signing Up. A message has been sent to your phone now!!");
+	var name = $("#name").val();
+	var number = $("#number").val();
+	var email = $("#email").val();
+	var organisation = $("#organisation").val();
+	//var code = Math.random();
+	
+	var u = "js_php.php?cmd=1&name="+name+"&number="+number+"&email="+email+"&organisation="+organisation; 
+				var r = syncAjax(u);
+				window.alert(u);
+				location.reload();
+
+});
+
+//View Meetings Button
+ //get particitpant details
+  $("#getdet1").click(function(){
+ details =syncAjax("js_php.php?cmd=2");
+ for (var i = 0; i < details.event.length; i++)
+ {
+   var part = " " + details.event[i].mid + " --||-- " + details.event[i].description + " --||-- " + details.event[i].date +
+				" --||-- " + details.event[i].time; + " --||-- " + details.event[i].contact;
+   $('<li><a href="code.html">'+ part + '</a></li><br>').appendTo($('#detail'));
+  
+ }
+ this.disabled = true;
+ });
+
+
+
+
+});
+</script>
+</head>
+<body>
+	<div data-role="page" class = "ui-content" data-theme="C">
+		<div data-role="header" data-position="inline">
+			<h1>Attendance APP</h1>
+		</div>
+		<div data-role="content" data-theme="C">
+			<p ><a href="#" class="ui-icon-arrow-d-r">Welcome, Admin User, please help to register a person.</a></p>
+			 <form	method="post"	action="main.html">
+		        <div data-role="fieldcontain">
+			    <label	for="name">Description:</label>			
+				<input	type="text"	name="name"	id="name">	
+				<label	for="number"> Date:</label>	
+				<input	type="text"	name="number"	id="number">
+				<label	for="e-mail"> Time:</label>	
+				<input	type="text"	name="e-mail"	id="email">
+				<label	for="task"> Contact:</label>	
+				<input	type="text"	name="organisation"	id="organisation"><br>
+
+				<label	for=" " i> </label>
+                <a	href="#" class="ui-btn"  id="save" align = "center">Register</a>
+		</div>
+		</form>
+	</div>
+	
+	<p ><a href="#" class="ui-icon-arrow-d-r" >MENU</a></p>
+                <!--a	href="login_page.html" class="ui-btn" class="ui-icon-arrow-d-r" id="show" onclick = "main.html" align = "center">Log In</a>
+				<label	for=" "> </label>
+                <a	href="code.html" class="ui-btn"   align = "center">Click here to scan Your code</a>
+				<label	for=" " id = "display"> </label-->
+				<a	href=" " class="ui-btn"  id="getdet1" align = "center">View Meeting List</a>
+				
+				<!--Showing the lis item-->
+				<div role="main" class="ui-content" data-position="fixed" data-autodividers="true">
+						<ul data-role="listview" id="detail" data-theme = "C">
+							<li>
+                            </li>							
+						<ul>
+                 </div>	
+	<div	data-role="footer">	
+				<h1>Content Goes here</h1>	
+		</div>
+</body>
+</html>

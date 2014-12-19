@@ -1,0 +1,52 @@
+/       <div role="main" class="ui-content" data-position="fixed">
+            
+            
+                            <ul data-role="listview" id="listview">
+
+                                <li data-role="list-divider">
+
+                                </li>
+
+                            </ul>
+                           </div>
+
+
+
+
+
+
+
+
+ function mylist(){ 
+ 
+        var u="events_action.php?cmd=2";
+					
+			var r=syncAjax(u);
+			
+			if(r.result==0){
+				$("divStatus").text(r.message);
+				return;
+			var i=0;
+			}
+			for(i=0;i<r.event.length;i++){
+				//$("#myList").text(r.person[i].username);
+				
+            var parent = document.getElementById('listview');
+            var listItem = document.createElement('li');
+            listItem.setAttribute('id','listitem');
+			
+			var name=r.event[i].pname;
+                        var pid=r.event[i].pid;
+                        var description=r.event[i].pdescription;
+                         //alert(name);
+			//alert(r.person[i].aid);
+                       
+            listItem.innerHTML="<a href='#pagefive' onclick='myDetails("+pid+")'><h3>"+name+"</h3><p>"+description+"</p></a>";
+            parent.appendChild(listItem);
+			//$("#listview").trigger('create');
+			//( "#listview" ).listview("refresh")	
+			//$( '#listview' ).listview().listview('refresh');
+			   var list = document.getElementById('listview');
+            $(list).listview().listview("refresh");
+			}
+}
